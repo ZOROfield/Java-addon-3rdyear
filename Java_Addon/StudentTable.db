@@ -1,0 +1,18 @@
+create table Trainer(
+   Tname varchar(20),
+   Tsalary int
+   );
+insert into Trainer(Tname,TSalary)
+  values('jhon',5000)
+);
+insert into Trainer(Tname,TSalary)
+  values('kiran',6000)
+);insert into Trainer(Tname,TSalary)
+  values('Kishore',3000)
+);
+insert into Trainer(Tname,TSalary)
+  values('Rex',4000)
+);
+insert into Trainer(Tname,TSalary)
+  values('Alwin',2000)
+);
