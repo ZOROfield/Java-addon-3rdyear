@@ -1,0 +1,88 @@
+
+mysql> CREATE TABLE student (
+    ->     rollno INT PRIMARY KEY,
+    ->     name VARCHAR(50),
+    ->     course VARCHAR(50),
+    ->     fee INT,
+    ->     books VARCHAR(100)
+    -> );
+--------------
+CREATE TABLE student (
+    rollno INT PRIMARY KEY,
+    name VARCHAR(50),
+    course VARCHAR(50),
+    fee INT,
+    books VARCHAR(100)
+)
+--------------
+
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> CREATE TABLE mark (
+    ->     rollno INT,
+    ->     marks INT,
+    ->     PRIMARY KEY (rollno),
+    ->     FOREIGN KEY (rollno) REFERENCES student(rollno)
+    -> );
+--------------
+CREATE TABLE mark (
+    rollno INT,
+    marks INT,
+    PRIMARY KEY (rollno),
+    FOREIGN KEY (rollno) REFERENCES student(rollno)
+)
+--------------
+
+Query OK, 0 rows affected (0.10 sec)
+
+mysql> INSERT INTO student (rollno, name, course, fee, books) VALUES
+    -> (34, 'michael', 'CT', 1500, 'Basics to networks'),
+    -> (35, 'john', 'fullStack', 1600, 'Basics to fulstack'),
+    -> (36, 'karthi', 'Webdev', 1200, 'Basic of Web'),
+    -> (37, 'sam', 'MAYA', 1200, 'visual Designing');
+--------------
+INSERT INTO student (rollno, name, course, fee, books) VALUES
+(34, 'michael', 'CT', 1500, 'Basics to networks'),
+(35, 'john', 'fullStack', 1600, 'Basics to fulstack'),
+(36, 'karthi', 'Webdev', 1200, 'Basic of Web'),
+(37, 'sam', 'MAYA', 1200, 'visual Designing')
+--------------
+
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql>
+mysql> INSERT INTO mark (rollno, marks) VALUES
+    -> (34, 78),
+    -> (35, 90),
+    -> (36, 89),
+    -> (37, 85);
+--------------
+INSERT INTO mark (rollno, marks) VALUES
+(34, 78),
+(35, 90),
+(36, 89),
+(37, 85)
+--------------
+
+Query OK, 4 rows affected (0.04 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> SELECT s.rollno, s.name, s.course, s.fee, s.books, m.marks
+    -> FROM student s
+    -> JOIN mark m ON s.rollno = m.rollno;
+--------------
+SELECT s.rollno, s.name, s.course, s.fee, s.books, m.marks
+FROM student s
+JOIN mark m ON s.rollno = m.rollno
+--------------
+
++--------+---------+-----------+------+--------------------+-------+
+| rollno | name    | course    | fee  | books              | marks |
++--------+---------+-----------+------+--------------------+-------+
+|     34 | michael | CT        | 1500 | Basics to networks |    78 |
+|     35 | john    | fullStack | 1600 | Basics to fulstack |    90 |
+|     36 | karthi  | Webdev    | 1200 | Basic of Web       |    89 |
+|     37 | sam     | MAYA      | 1200 | visual Designing   |    85 |
++--------+---------+-----------+------+--------------------+-------+
+4 rows in set (0.00 sec)
