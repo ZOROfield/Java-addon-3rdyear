@@ -1,0 +1,94 @@
+ create database employee;
+mysql> create table emp1(
+    -> empid INT PRIMARY KEY,
+    -> name varchar(20),
+    -> dept varchar(25),
+    -> salary int,
+    -> joindate DATE
+    -> );
+insert into emp1(empid,name,dept,salary,joindate) VALUES
+(1,'sakthi','developer',60000,'2025-09-19'),
+(2,'surya','developer',65000,'2025-10-19'),
+(3,'sanjay','developer',70000,'2025-11-19'),
+(4,'roshan','mg',75000,'2025-11-19'),
+(5,'victor','dev',80000,'2025-11-19');
+mysql> select*from emp1;
+--------------
+select*from emp1
+--------------
+
++-------+--------+-----------+--------+------------+
+| empid | name   | dept      | salary | joindate   |
++-------+--------+-----------+--------+------------+
+|     1 | sakthi | developer |  60000 | 2025-09-19 |
+|     2 | surya  | developer |  65000 | 2025-10-19 |
+|     3 | sanjay | developer |  70000 | 2025-11-19 |
+|     4 | roshan | mg        |  75000 | 2025-11-19 |
+|     5 | victor | dev       |  80000 | 2025-11-19 |
++-------+--------+-----------+--------+------------+
+5 rows in set (0.00 sec)
+update emp1 set salary=salary+15000 where name ='sakthi';
+mysql> select* from emp1;
+--------------
+select* from emp1
+--------------
+
++-------+--------+-----------+--------+------------+
+| empid | name   | dept      | salary | joindate   |
++-------+--------+-----------+--------+------------+
+|     1 | sakthi | hr        |  80000 | 2025-09-19 |
+|     2 | surya  | developer |  65000 | 2025-10-19 |
+|     3 | sanjay | manager   |  70000 | 2025-11-19 |
+|     4 | roshan | mg        |  75000 | 2025-11-19 |
+|     5 | victor | dev       |  80000 | 2025-11-19 |
++-------+--------+-----------+--------+------------+
+5 rows in set (0.00 sec)
+--------------
+delete from  employee1
+where  empid=5
+-------------
+mysql> select*from employee1;
+--------------
+select*from employee1
+--------------
+
++-------+--------+-----------+--------+------------+
+| empid | name   | sector    | salary | joindate   |
++-------+--------+-----------+--------+------------+
+|     1 | sakthi | hr        |  80000 | 2025-09-19 |
+|     2 | surya  | developer |  65000 | 2025-10-19 |
+|     3 | sanjay | manager   |  70000 | 2025-11-19 |
+|     4 | roshan | mg        |  75000 | 2025-11-19 |
++-------+--------+-----------+--------+------------+
+4 rows in set (0.00 sec)
+mysql> select *from employee1 where salary=' 80000'and sector='hr';
+--------------
+select *from employee1 where salary=' 80000'and sector='hr'
+--------------
+
++-------+--------+--------+--------+------------+
+| empid | name   | sector | salary | joindate   |
++-------+--------+--------+--------+------------+
+|     1 | sakthi | hr     |  80000 | 2025-09-19 |
++-------+--------+--------+--------+------------+
+1 row in set (0.00 sec)
+
+mysql> select *from employee1 where sector='mg'and salary >70000;
+--------------
+select *from employee1 where sector='mg'and salary >70000
+--------------
+
++-------+--------+--------+--------+------------+
+| empid | name   | sector | salary | joindate   |
++-------+--------+--------+--------+------------+
+|     4 | roshan | mg     |  75000 | 2025-11-19 |
++-------+--------+--------+--------+------------+
+1 row in set (0.00 sec)
+mysql> select name,department,joindate
+    -> from emp
+    -> where de[t='hr'and joindate='2025-09-19'
+    -> order by joindate desc;
+--------------
+mysql> select *, sal*12 as ANNUAL_SALARY
+    -> from emp
+    -> where job not in('ANALYST','MANAGER');
