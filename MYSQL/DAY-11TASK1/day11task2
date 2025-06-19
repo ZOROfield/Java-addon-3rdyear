@@ -1,0 +1,21 @@
+ SELECT *
+    -> FROM student s
+    -> JOIN mark m ON s.rollno = m.rollno
+    -> WHERE m.marks = (
+    ->     SELECT MAX(marks) FROM mark
+    -> );
+--------------
+SELECT *
+FROM student s
+JOIN mark m ON s.rollno = m.rollno
+WHERE m.marks = (
+    SELECT MAX(marks) FROM mark
+)
+--------------
+
++--------+------+-----------+------+--------------------+--------+-------+
+| rollno | name | course    | fee  | books              | rollno | marks |
++--------+------+-----------+------+--------------------+--------+-------+
+|     35 | john | fullStack | 1600 | Basics to fulstack |     35 |    90 |
++--------+------+-----------+------+--------------------+--------+-------+
+1 row in set (0.03 sec)
