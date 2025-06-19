@@ -1,0 +1,32 @@
+mysql> CREATE TABLE orders (
+    ->     order_id INT PRIMARY KEY,
+    ->     customer_id INT,
+    ->     order_date DATE,
+    ->     total_amount DECIMAL(10, 2),
+    ->     status VARCHAR(50),
+    ->     FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
+    -> );
+Query OK, 0 rows affected (0.05 sec)
+
+ CREATE TABLE customers (
+    ->     customer_id INT PRIMARY KEY,
+    ->     name VARCHAR(100),
+    ->     email VARCHAR(100),
+    ->     phone VARCHAR(20),
+    ->     address VARCHAR(255)
+    -> );
+Query OK, 0 rows affected (0.06 sec)
+
+
+mysql> SELECT c.customer_id, c.name, c.email, c.phone, c.address,
+    ->        o.order_id, o.order_date, o.total_amount, o.status
+    -> FROM customers c
+    -> JOIN orders o ON c.customer_id = o.customer_id;
++-------------+-------+------------------+--------------+--------------+----------+------------+--------------+-----------+
+| customer_id | name  | email            | phone        | address      | order_id | order_date | total_amount | status    |
++-------------+-------+------------------+--------------+--------------+----------+------------+--------------+-----------+
+|           1 | Alice | alice@mail.com   | 123-456-7890 | 123 Maple St |      101 | 2025-06-01 |       250.75 | Shipped   |
+|           1 | Alice | alice@mail.com   | 123-456-7890 | 123 Maple St |      102 | 2025-06-10 |       120.00 | Delivered |
+|           2 | Bob   | bob@mail.com     | 234-567-8901 | 456 Oak Ave  |      103 | 2025-06-05 |       320.40 | Pending   |
++-------------+-------+------------------+--------------+--------------+----------+------------+--------------+-----------+
+3 rows in set (0.00 sec)
